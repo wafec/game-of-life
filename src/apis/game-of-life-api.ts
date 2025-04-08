@@ -37,10 +37,10 @@ export class GameOfLifeApi {
 
   nextGame(id: GameId, times: number = 1): GameSnapshot | undefined {
     let game = this.retrieveGame(id);
-    for(let i: number = 0; i < times; i++) {
-        game = moveToNextRound(game!)
+    for (let i: number = 0; i < times; i++) {
+      game = moveToNextRound(game!);
     }
-    this.gameStore.set(id, game!)
+    this.gameStore.set(id, game!);
     return game;
   }
 
@@ -49,7 +49,7 @@ export class GameOfLifeApi {
     for (const f of flip) {
       game = flipSnapshotCell(game!, f.row, f.col);
     }
-    this.gameStore.set(id, game!)
+    this.gameStore.set(id, game!);
     return game;
   }
 

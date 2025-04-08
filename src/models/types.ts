@@ -5,4 +5,4 @@ export enum Status {
 
 export type OnClickFunction = () => void;
 export type OnFlipFunction = (row: number, col: number) => void;
-export type OnJumpNFunction = (n: number) => void
+export type OnJumpNFunction = (n: number) => void;

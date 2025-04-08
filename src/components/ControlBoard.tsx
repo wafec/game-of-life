@@ -13,14 +13,14 @@ export default function ControlBoard({
   onNext?: OnJumpNFunction;
   playing?: boolean;
 }) {
-  const [nextN, setNextN]: [number, any] = useState(1)
+  const [nextN, setNextN]: [number, any] = useState(1);
 
   const handleNextNChange = (event: any) => {
-    const v = parseInt(event.target.value)
+    const v = parseInt(event.target.value);
     if (v > 0) {
-      setNextN(v)
+      setNextN(v);
     }
-  }
+  };
 
   return (
     <div className="control-board">
@@ -34,7 +34,7 @@ export default function ControlBoard({
         Next
       </div>
       <div>
-        <input type='number' value={nextN} onChange={handleNextNChange}></input>
+        <input type="number" value={nextN} onChange={handleNextNChange}></input>
       </div>
     </div>
   );
