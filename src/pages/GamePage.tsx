@@ -40,7 +40,7 @@ export default function GamePage() {
 
   const handleNext = (times: number) => {
     setSnapshot(GameOfLifeApi.INSTANCE.nextGame(gameId, times));
-    setGeneration((generation: number) => generation + 1);
+    setGeneration((generation: number) => generation + times);
   };
 
   const handleOnFlip = (row: number, col: number) => {
