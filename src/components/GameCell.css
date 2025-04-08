@@ -1,0 +1,10 @@
+.game-cell {
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border: 1px solid lightgray;
+}
+
+.game-cell.alive {
+  background-color: white;
+}

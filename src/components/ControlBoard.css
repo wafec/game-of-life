@@ -1,0 +1,8 @@
+.control-board {
+  display: flex;
+}
+
+.control-board > .item {
+  cursor: default;
+  padding: 3px;
+}
