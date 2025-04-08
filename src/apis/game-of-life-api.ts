@@ -35,9 +35,11 @@ export class GameOfLifeApi {
     return this.gameStore.get(id);
   }
 
-  nextGame(id: GameId): GameSnapshot | undefined {
+  nextGame(id: GameId, times: number = 1): GameSnapshot | undefined {
     let game = this.retrieveGame(id);
-    game = moveToNextRound(game!)
+    for(let i: number = 0; i < times; i++) {
+        game = moveToNextRound(game!)
+    }
     this.gameStore.set(id, game!)
     return game;
   }

@@ -38,8 +38,8 @@ export default function GamePage() {
     setPlaying(!playing);
   };
 
-  const handleNext = () => {
-    setSnapshot(GameOfLifeApi.INSTANCE.nextGame(gameId));
+  const handleNext = (times: number) => {
+    setSnapshot(GameOfLifeApi.INSTANCE.nextGame(gameId, times));
     setGeneration((generation: number) => generation + 1);
   };
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { OnClickFunction } from "../models/types";
+import { OnClickFunction, OnJumpNFunction } from "../models/types";
 import "./ControlBoard.css";
 
 export default function ControlBoard({
@@ -10,9 +10,18 @@ export default function ControlBoard({
 }: {
   onReset?: OnClickFunction;
   onPlay?: OnClickFunction;
-  onNext?: OnClickFunction;
+  onNext?: OnJumpNFunction;
   playing?: boolean;
 }) {
+  const [nextN, setNextN]: [number, any] = useState(1)
+
+  const handleNextNChange = (event: any) => {
+    const v = parseInt(event.target.value)
+    if (v > 0) {
+      setNextN(v)
+    }
+  }
+
   return (
     <div className="control-board">
       <div className="item" onClick={onReset}>
@@ -21,8 +30,11 @@ export default function ControlBoard({
       <div className="item" onClick={onPlay}>
         {playing ? "Pause" : "Play"}
       </div>
-      <div className="item" onClick={onNext}>
+      <div className="item" onClick={() => onNext && onNext(nextN)}>
         Next
+      </div>
+      <div>
+        <input type='number' value={nextN} onChange={handleNextNChange}></input>
       </div>
     </div>
   );
