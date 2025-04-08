@@ -136,3 +136,16 @@ export function flipSnapshotCell(
   newGame.set(row, col, nextStatus);
   return newGame;
 }
+
+export function createDefaultGameSnapshot(): GameSnapshot {
+  // TODO: retrieve these values from a configuration file
+  const rows: number = 50;
+  const cols: number = 50;
+  const defaultSnapshot = GameSnapshot.create(rows, cols);
+  defaultSnapshot.set(25, 25, Status.Alive);
+  defaultSnapshot.set(24, 25, Status.Alive);
+  defaultSnapshot.set(25, 24, Status.Alive);
+  defaultSnapshot.set(26, 25, Status.Alive);
+  defaultSnapshot.set(26, 26, Status.Alive);
+  return defaultSnapshot;
+}

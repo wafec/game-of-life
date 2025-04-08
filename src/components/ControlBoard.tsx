@@ -6,14 +6,13 @@ export default function ControlBoard({
   onReset,
   onPlay,
   onNext,
-  playing = false
+  playing = false,
 }: {
   onReset?: OnClickFunction;
   onPlay?: OnClickFunction;
   onNext?: OnClickFunction;
   playing?: boolean;
 }) {
-
   return (
     <div className="control-board">
       <div className="item" onClick={onReset}>
