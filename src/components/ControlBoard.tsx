@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import "./ControlBoard.css";
-import { OnClickFunction, OnJumpNFunction } from "@/model/types";
 import useGameStore from "@/store/useGameStore";
 
 type ControlBoardProps = {
@@ -9,12 +8,12 @@ type ControlBoardProps = {
 };
 
 export default function ControlBoard({ playing = false }: ControlBoardProps) {
-  const [nextN, setNextN]: [number, any] = useState(1);
+  const [nextN, setNextN] = useState(1);
   const next = useGameStore((state) => state.next);
   const reset = useGameStore((state) => state.reset);
 
-  const handleNextNChange = (event: any) => {
-    const v = parseInt(event.target.value);
+  const handleNextNChange = (value: string) => {
+    const v = parseInt(value);
     if (v > 0) {
       setNextN(v);
     }
@@ -40,7 +39,7 @@ export default function ControlBoard({ playing = false }: ControlBoardProps) {
         Next
       </div>
       <div>
-        <input type="number" value={nextN} onChange={handleNextNChange}></input>
+        <input type="number" value={nextN} onChange={(event) => handleNextNChange(event.target.value)}></input>
       </div>
     </div>
   );

@@ -1,7 +1,5 @@
-import { GameSnapshot } from "@/lib/gameOfLife";
 import { Status } from "@/model/types";
 import { InMemoryGameOfLifeHistory } from "@/lib/gameOfLifeHistory";
-import { stat } from "fs";
 import { create } from "zustand";
 
 export type GameStoreProps = {

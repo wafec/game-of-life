@@ -1,7 +1,7 @@
 "use client";
 import useGameStore from "@/store/useGameStore";
 
-export default function () {
+export default function GameInfo() {
   const { population, generation } = useGameStore();
   return (
     <>
