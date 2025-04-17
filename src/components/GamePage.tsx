@@ -13,7 +13,7 @@ export default function GamePage() {
         <GameBoard />
       </div>
       <div>
-        <ControlBoard playing={false} />
+        <ControlBoard />
       </div>
       <div>
         <GameInfo />
