@@ -7,10 +7,12 @@ export type GameStoreProps = {
   gameId: number;
   generation: number;
   population: number;
+  playing: boolean;
   flip: (row: number, col: number) => Promise<void>;
   next: (times: number) => Promise<void>;
   reset: () => Promise<void>;
   start: () => Promise<void>;
+  loop: (playing: boolean) => Promise<void>;
 };
 
 export default create<GameStoreProps>((set, get) => ({
@@ -19,6 +21,7 @@ export default create<GameStoreProps>((set, get) => ({
   generation: 0,
   population: 0,
   inLoop: false,
+  playing: false,
   flip: async (row: number, col: number) => {
     const game = InMemoryGameOfLifeHistory.INSTANCE.flip(get().gameId, {
       row,
@@ -58,4 +61,16 @@ export default create<GameStoreProps>((set, get) => ({
       generation: state.generation + 1,
     }));
   },
+  loop: async (playing: boolean) => {
+    set({playing: playing})
+
+    function repeatCallingNext() {
+        if (!get().playing) return;
+        const game = InMemoryGameOfLifeHistory.INSTANCE.nextGame(get().gameId, 1)
+        set((state) => ({board: game?.statuses, population: game?.population(), generation: state.generation + 1}))
+        setTimeout(repeatCallingNext, 300);
+    }
+
+    setTimeout(repeatCallingNext, 0);
+  }
 }));

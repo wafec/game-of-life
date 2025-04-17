@@ -3,14 +3,12 @@ import React, { useState } from "react";
 import "./ControlBoard.css";
 import useGameStore from "@/store/useGameStore";
 
-type ControlBoardProps = {
-  playing: boolean;
-};
-
-export default function ControlBoard({ playing = false }: ControlBoardProps) {
+export default function ControlBoard() {
   const [nextN, setNextN] = useState(1);
   const next = useGameStore((state) => state.next);
   const reset = useGameStore((state) => state.reset);
+  const loop = useGameStore((state) => state.loop);
+  const [playing, setPlaying] = useState(false)
 
   const handleNextNChange = (value: string) => {
     const v = parseInt(value);
@@ -27,12 +25,17 @@ export default function ControlBoard({ playing = false }: ControlBoardProps) {
     await reset();
   };
 
+  const handlePlayClick = async () => {
+    setPlaying(!playing)
+    await loop(!playing)
+  }
+
   return (
     <div className="control-board">
       <div className="item" onClick={handleResetClick}>
         Reset
       </div>
-      <div className="item" onClick={() => {}}>
+      <div className="item" onClick={handlePlayClick}>
         {playing ? "Pause" : "Play"}
       </div>
       <div className="item" onClick={handleNextClick}>
