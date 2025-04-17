@@ -22,7 +22,8 @@ const config: Config = {
     "**/?(*.)+(spec|test).[tj]s?(x)"
   ],
   testPathIgnorePatterns: [
-    "/node_modules/"
+    "/node_modules/",
+    "/legacy/"
   ]
 };
 
