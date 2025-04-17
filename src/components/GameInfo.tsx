@@ -5,8 +5,8 @@ export default function GameInfo() {
   const { population, generation } = useGameStore();
   return (
     <>
-      <div>Population: {population}</div>
-      <div>Generation: {generation}</div>
+      <div data-testid='population-text'>Population: {population}</div>
+      <div data-testid='generation-text'>Generation: {generation}</div>
     </>
   );
 }
