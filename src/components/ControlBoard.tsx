@@ -1,19 +1,17 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import "./ControlBoard.css";
 import { OnClickFunction, OnJumpNFunction } from "@/model/types";
 import useGameStore from "@/store/useGameStore";
 
 type ControlBoardProps = {
-  playing: boolean
-}
+  playing: boolean;
+};
 
-export default function ControlBoard({
-  playing = false,
-}: ControlBoardProps) {
+export default function ControlBoard({ playing = false }: ControlBoardProps) {
   const [nextN, setNextN]: [number, any] = useState(1);
-  const next = useGameStore((state)=> state.next)
-  const reset = useGameStore((state) => state.reset)
+  const next = useGameStore((state) => state.next);
+  const reset = useGameStore((state) => state.reset);
 
   const handleNextNChange = (event: any) => {
     const v = parseInt(event.target.value);
@@ -23,12 +21,12 @@ export default function ControlBoard({
   };
 
   const handleNextClick = async () => {
-    await next(nextN)
-  }
+    await next(nextN);
+  };
 
   const handleResetClick = async () => {
-    await reset()
-  }
+    await reset();
+  };
 
   return (
     <div className="control-board">

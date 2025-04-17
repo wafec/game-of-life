@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useEffect } from "react";
 import GameCell from "./GameCell";
 import "./GameBoard.css";
@@ -6,11 +6,11 @@ import { Status } from "@/model/types";
 import useGameStore from "@/store/useGameStore";
 
 export default function GameBoard() {
-  const board = useGameStore((state) => state.board)
-  const start = useGameStore((state) => state.start)
+  const board = useGameStore((state) => state.board);
+  const start = useGameStore((state) => state.start);
 
   useEffect(() => {
-    start()
+    start();
   }, []);
 
   const renderCol = (col: Status, rowIndex: number, colIndex: number) => {
@@ -25,7 +25,5 @@ export default function GameBoard() {
     );
   };
 
-  return (
-      <div>{board.map((row, rowIndex) => renderRow(row, rowIndex))}</div>
-  );
+  return <div>{board.map((row, rowIndex) => renderRow(row, rowIndex))}</div>;
 }

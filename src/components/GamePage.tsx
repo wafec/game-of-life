@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import GameBoard from "./GameBoard";
 import ControlBoard from "./ControlBoard";
@@ -16,9 +16,7 @@ export default function GamePage() {
         <GameBoard />
       </div>
       <div>
-        <ControlBoard
-          playing={playing}
-        />
+        <ControlBoard playing={playing} />
       </div>
       <div>
         <GameInfo />
