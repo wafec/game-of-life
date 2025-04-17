@@ -14,7 +14,7 @@ export default function GameBoard() {
   }, [start]);
 
   const renderCol = (col: Status, rowIndex: number, colIndex: number) => {
-    return <GameCell status={col} row={rowIndex} col={colIndex} />;
+    return <GameCell key={`${rowIndex}-${colIndex}`} status={col} row={rowIndex} col={colIndex} />;
   };
 
   const renderRow = (row: Status[], rowIndex: number) => {
