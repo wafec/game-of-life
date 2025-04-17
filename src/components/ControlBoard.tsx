@@ -1,40 +1,48 @@
+"use client";
 import React, { useState } from "react";
-import { OnClickFunction, OnJumpNFunction } from "../models/types";
 import "./ControlBoard.css";
+import useGameStore from "@/store/useGameStore";
 
-export default function ControlBoard({
-  onReset,
-  onPlay,
-  onNext,
-  playing = false,
-}: {
-  onReset?: OnClickFunction;
-  onPlay?: OnClickFunction;
-  onNext?: OnJumpNFunction;
-  playing?: boolean;
-}) {
-  const [nextN, setNextN]: [number, any] = useState(1);
+export default function ControlBoard() {
+  const [nextN, setNextN] = useState(1);
+  const next = useGameStore((state) => state.next);
+  const reset = useGameStore((state) => state.reset);
+  const loop = useGameStore((state) => state.loop);
+  const [playing, setPlaying] = useState(false)
 
-  const handleNextNChange = (event: any) => {
-    const v = parseInt(event.target.value);
+  const handleNextNChange = (value: string) => {
+    const v = parseInt(value);
     if (v > 0) {
       setNextN(v);
     }
   };
 
+  const handleNextClick = async () => {
+    await next(nextN);
+  };
+
+  const handleResetClick = async () => {
+    await reset();
+  };
+
+  const handlePlayClick = async () => {
+    setPlaying(!playing)
+    await loop(!playing)
+  }
+
   return (
     <div className="control-board">
-      <div className="item" onClick={onReset}>
+      <div className="item" onClick={handleResetClick}>
         Reset
       </div>
-      <div className="item" onClick={onPlay}>
+      <div className="item" onClick={handlePlayClick}>
         {playing ? "Pause" : "Play"}
       </div>
-      <div className="item" onClick={() => onNext && onNext(nextN)}>
+      <div className="item" onClick={handleNextClick}>
         Next
       </div>
       <div>
-        <input type="number" value={nextN} onChange={handleNextNChange}></input>
+        <input type="number" value={nextN} onChange={(event) => handleNextNChange(event.target.value)}></input>
       </div>
     </div>
   );

@@ -1,27 +1,26 @@
-import React, { useContext } from "react";
-import { Status } from "../models/types";
-import "./GameCell.css";
-import { GameBoardContext, GameBoardEventEmitter } from "./game-board-context";
+"client";
 
-export default function GameCell({
-  status,
-  row,
-  col,
-}: {
+import "./GameCell.css";
+import { Status } from "@/model/types";
+import useGameStore from "@/store/useGameStore";
+
+type GameCellProps = {
   status: Status;
   row: number;
   col: number;
-}) {
-  const emitter: GameBoardEventEmitter = useContext(GameBoardContext);
+};
 
-  const handleClick = () => {
-    emitter.flipCell(row, col);
+export default function GameCell({ status, row, col }: GameCellProps) {
+  const flip = useGameStore((state) => state.flip);
+
+  const handleFlipClick = async () => {
+    await flip(row, col);
   };
 
   return (
     <div
       className={`game-cell ${status == Status.Alive && "alive"}`}
-      onClick={handleClick}
+      onClick={handleFlipClick}
     />
   );
 }
